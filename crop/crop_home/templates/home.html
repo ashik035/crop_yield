@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+{% comment %} <html lang="en"> {% endcomment %}
 
 <head>
     <!-- basic -->
@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1">
     <!-- site metas -->
-    <title>Crop Yield firm</title>
+    <title>Crop Yield Analysis</title>
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -46,22 +46,21 @@
 
             <div class="container">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-3 col-md-3 col-sm-12 col logo_section">
+                    <div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 col logo_section">
                         <div class="full">
                             <div class="center-desk">
                                 <div class="logo">
-                                    <a href="index.html"><img src='{% static "images/logo.png" %}' alt="#"></a>
+                                    <a href='{% url "home" %}'><img src='{% static "images/new_logo.png" %}' alt="logo"></a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9">
+                    <div class="col-xl-8 col-lg-8 col-md-8 col-sm-9">
                         <div class="location_icon_bottum_tt">
                             <ul>
-                                <li><img src='{% static "icon/loc1.png" %}'/>Location</li>
-                                <li><img src='{% static "icon/email1.png" %}' />demo@gmail.com</li>
+                                <li><img src='{% static "icon/email1.png" %}' />soufia.roshni01@northsouth.edu</li>
 
-                                <li><img src='{% static "icon/call1.png" %}' />(+71)9876543109</li>
+                                <li><img src='{% static "icon/call1.png" %}' />(+880) 1771-110110</li>
                             </ul>
                         </div>
                     </div>
@@ -69,16 +68,17 @@
                 <div class="row">
                     <div class="col-md-12 location_icon_bottum">
                        <div class="row">
-                            <div class="col-md-8 ">
+                            <div class="col-md-12">
                                 <div class="menu-area">
                                     <div class="limit-box">
                                         <nav class="main-menu">
                                             <ul class="menu-area-main">
-                                                <li class="active"> <a href="index.html">Home</a> </li>
-                                                <li> <a href="#about">About</a> </li>
-                                                <li><a href="#product">Products</a></li>
-                                                <li><a href="#testimonial">Testimonial</a></li>
-                                                <li><a href="#contact">Contact Us</a></li>
+                                                <li class="active"> <a href="#">হোম</a> </li>
+                                                <li> <a href="#about">বর্ণনা</a> </li>
+                                                <li><a href="#product">ফসল ফলন পূর্বাভাস</a></li>
+                                                <li><a href="#testimonial">আবহাওয়ার পূর্বাভাস</a></li>
+                                                <li><a href="#">কৃষির তথ্য</a></li>
+                                                <li><a href="#contact">যোগাযোগ করুন</a></li>
 
                                             </ul>
                                         </nav>
@@ -86,12 +86,12 @@
                                 </div>
 
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+                            {% comment %} <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
                                 <form class="search">
                                     <input class="form-control" type="text" placeholder="Search">
                                     <button><img src='{% static "images/search_icon.png" %}'></button>
                                 </form>
-                            </div>
+                            </div> {% endcomment %}
                        </div>
                     </div>
                 </div>
@@ -112,11 +112,11 @@
                     <img class="first-slide" src='{% static "images/banner.jpg" %}' alt="First slide">
                     <div class="container">
                         <div class="carousel-caption relative">
-                            <h1>Crop Yield</h1>
-                            <span>FARMING COMPANY</span>
+                            <h1>ফসল উৎপাদন</h1>
+                            <span>পূর্বাভাস</span>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi </p>
-                            <a class="buynow" href="#about">About us</a><a class="buynow ggg" href="#">Get a quote</a>
+                            <a class="buynow" href="#about">আমাদের সম্পর্কে জানুন</a><a class="buynow ggg" href="#product">তথ্য অন্বেষণ করুন</a>
 
                         </div>
                     </div>
@@ -125,11 +125,11 @@
                     <img class="second-slide" src='{% static "images/banner.jpg" %}' alt="Second slide">
                     <div class="container">
                         <div class="carousel-caption relative">
-                            <h1>Crop Yield</h1>
-                            <span>FARMING COMPANY</span>
+                            <h1>আবহাওয়ার</h1>
+                            <span>পূর্বাভাস</span>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi </p>
-                            <a class="buynow" href="#about">About us</a><a class="buynow ggg" href="#">Get a quote</a>
+                            <a class="buynow" href="#about">আমাদের সম্পর্কে জানুন</a><a class="buynow ggg" href="#testimonial">তথ্য অন্বেষণ করুন</a>
 
                         </div>
                     </div>
@@ -138,11 +138,11 @@
                     <img class="third-slide" src='{% static "images/banner.jpg" %}' alt="Third slide">
                     <div class="container">
                         <div class="carousel-caption relative">
-                            <h1>Crop Yield</h1>
-                            <span>FARMING COMPANY</span>
+                            <h1>কৃষি তথ্য</h1>
+                            <span>সম্পর্কে জানুন</span>
 
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi </p>
-                            <a class="buynow" href="#about">About us</a><a class="buynow ggg" href="#">Get a quote</a>
+                            <a class="buynow" href="#about">আমাদের সম্পর্কে জানুন</a><a class="buynow ggg" href="#">তথ্য অন্বেষণ করুন</a>
 
                         </div>
                     </div>
@@ -164,9 +164,9 @@
 
                 <div class="col-xl-5 col-lg-5 col-md-5 co-sm-l2">
                     <div class="about_box">
-                        <h2>About Crop Yield<br><strong class="black"> Farm and company</strong></h2>
+                        <h2>এই প্রকল্প সম্পর্কে<br><strong class="black"> বিস্তারিত</strong></h2>
                         <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex</p>
-                        <a href="#">Read More</a>
+                        <a href="#">হোমে ফিরুন</a>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-7 col-md-7 co-sm-l2">
@@ -491,7 +491,7 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12">
                         <div class="address">
-                            <a href="index.html"> <img src='{% static "images/logo.png" %}' alt="logo" /></a>
+                            <a href={% url "home" %}> <img src='{% static "images/new_logo.png" %}' alt="logo" /></a>
                             <p>dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et sdolor sit amet, consectetur adipiscing elit, </p>
                         </div>
                     </div>
@@ -538,7 +538,7 @@
 
         <div class="copyright">
             <div class="container">
-                <p>© 2019 All Rights Reserved. Design By<a href="https://html.design/"> Free Html Templates</a></p>
+                <p>© 2019 All Rights Reserved. Design By Ashik, Soufia, Mrittiaka and Rabbul</a></p>
 
         </div>
         </div>
