@@ -4,7 +4,7 @@
 /*------------------------------------------------------------------- 991px x 768px ---------------------------------------------------------------------*/
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
-    
+
     .header-search {
         padding: 15px 0px;
     }
@@ -179,7 +179,7 @@ ul.social_icon {display: none !important;}
 .testomonial_img::after {background: inherit;}
 .cross_inner h3 {padding-bottom: 20px; padding-left: 20px; padding-top: 0px;}
 
-   
+
 }
 
 @media (min-width: 576px) and (max-width: 767px) {
@@ -227,7 +227,7 @@ background: transparent;
    .ggg {display: none;}
     .header { padding-bottom: 0; padding-top: 30px;}
     .last {display: none;}
-    .img-box {display: none;} 
+    .img-box {display: none;}
     .search {display: none;}
 .location_icon_bottum_tt {display: none;}
 .logo {float: inherit; padding-bottom: 15px; text-align: center; margin-top: -16px;}

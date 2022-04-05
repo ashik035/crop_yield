@@ -1590,6 +1590,7 @@ background: #052501;
 
 .location_icon_bottum_tt {
 width: 100%;
+margin-left: 14%;
 }
 
 .location_icon_bottum_tt ul li {
@@ -1604,7 +1605,7 @@ font-weight: 500;
 
 
 .location_icon_bottum {
-   
+
     position: relative;
     z-index: 999;
     background: #090501;
@@ -1652,7 +1653,7 @@ font-weight: 500;
     height: 25px;
     border-radius: 15px;
     background-color: #052501;
-   
+
 }
 #myCarousel .carousel-indicators li { margin-bottom: 40px;}
 .banner-main .carousel-item img {width: 100%;}
@@ -1749,11 +1750,11 @@ text-align: center;
 line-height: 40px;
 border-radius: 100%;
 font-size: 18px;
-} 
+}
 
 ul.social_icon li a:hover {
      background: #ff0000;
-border: solid #ff0000 1px;        
+border: solid #ff0000 1px;
 color: #fff;
 }
 /** end banner **/
@@ -1795,7 +1796,7 @@ margin: 0 auto;
 
 .about .about_box {
      text-align: left;
-     
+
 }
 
 .about .about_box h2 {
@@ -1846,14 +1847,14 @@ border-radius: 18px;
       padding: 70px 0px;
  }
 .for_box_bg .for_box {
-     text-align: center; 
+     text-align: center;
      box-sizing: border-box;
 }
 .for_box_bg .for_box span {
-     font-weight: bold; 
-     font-size:51px; 
-     line-height: 51px; 
-     color: #4bc714; 
+     font-weight: bold;
+     font-size:51px;
+     line-height: 51px;
+     color: #4bc714;
      display: block;
      padding: 20px 0px;
 }
@@ -1870,7 +1871,7 @@ border-radius: 18px;
 .offer-bg {
      background: #052501;
      padding: 90px 0px;
-    
+
 }
 
 .margin {
@@ -1896,7 +1897,7 @@ border-radius: 18px;
 }
 .offer .offer-bg .offer_box p {padding-top: 35px; font-size: 17px; line-height: 23px; color: #fff;}
 
-.read-more { 
+.read-more {
 font-family: poppins;
 max-width: 212px;
 margin: 0 auto;
@@ -1930,7 +1931,7 @@ margin-top: -100px;
 
 .product {padding: 90px 0px 60px 0px;}
 .product .title h2 {max-width: 425px;
- width: 100%; 
+ width: 100%;
 }
 .product .product_box {margin-bottom: 30px;}
 .product .product_box figure {margin: 0px; position: relative;}
@@ -1959,8 +1960,8 @@ box-sizing: border-box;
 /** end product **/
 .clients {
      background: #fff;
-   
-} 
+
+}
 .clients .titlepage {padding-bottom: 0px;}
 .clients .titlepage h2 {
      color: #000;
@@ -1969,12 +1970,12 @@ box-sizing: border-box;
 .clients_red {
      background: #fff;
      padding-bottom: 50px;
-} 
+}
 
 .cross_inner h3 {
     text-align: left;
     padding-left: 60px;
-    padding-top: 58px;   
+    padding-top: 58px;
     font-size: 30px;
     line-height: 25px;
     padding-bottom: 58px;
@@ -2033,7 +2034,7 @@ transform: skew(190deg);
 .testimonial_cont h3 { color: #000; font-family: poppins;}
 
 
-     
+
 
 
 
@@ -2046,7 +2047,7 @@ transform: skew(190deg);
 
 .contact {
     margin-top: 90px;
-    
+
 }
 
 
@@ -2118,7 +2119,7 @@ transform: skew(190deg);
 .footer {background: #052501; padding: 90px 0px;}
 
 
- 
+
  ul.loca li {
     color: #fff;
 padding-bottom: 10px;
@@ -2134,7 +2135,7 @@ flex-wrap: wrap;
 color: #fff;
 margin-top: 4px;
 }
- 
+
  ul.Links_footer {
      list-style: none;
      margin: 0;
@@ -2156,8 +2157,8 @@ margin-top: 4px;
     padding-bottom: 15px;
     color: #3e7f21;
 }
- 
- 
+
+
 
  .hhh {
     margin-bottom: 15px;
