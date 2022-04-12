@@ -2,7 +2,7 @@
 Crop yield prediction Instalation Guide:
 
 # Pull the source code by this command: 
-git pull https://github.com/ashik035/crop_yield.git
+git clone https://github.com/ashik035/crop_yield.git
 
 # Now run these commands at the project dir
 
