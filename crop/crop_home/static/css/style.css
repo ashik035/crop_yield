@@ -35,15 +35,16 @@ html {
 body {
      color: #666666;
      font-size: 14px;
-      font-family: poppins;
+     font-family: poppins;
      line-height: 1.80857;
      font-weight: normal;
      overflow-x: hidden;
+     height: 5980px;
 }
 
 /* Return to top button start*/
 
-.arrow-button{    
+.arrow-button{
      position: fixed;
      bottom: 50px;
      right: 50px;
@@ -121,9 +122,9 @@ h6 {
 *,
 *::after,
 *::before {
-     -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-     box-sizing: border-box;
+     -webkit-box-sizing: border-box !important;
+     -moz-box-sizing: border-box !important;
+     box-sizing: border-box !important;
 }
 
 h1 a,
@@ -1096,7 +1097,6 @@ ul.top_icon li a {
 }
 
 
-}
 .main-menu ul li:last-child a {
      padding-right: 0;
 }
@@ -1112,11 +1112,11 @@ ul.top_icon li a {
      position: relative;
      border-bottom: solid #eee 1px;
 }
-.main-menu ul>li .sub-down li a::before {}
+/* .main-menu ul>li .sub-down li a::before {} */
 .main-menu ul>li .sub-down li a:hover {
      color: #111111;
 }
-.main-menu ul>li .sub-down li a:hover::before {}
+/* .main-menu ul>li .sub-down li a:hover::before {} */
 .main-menu ul li:first-child {
      margin-left: 0;
 }
@@ -1170,7 +1170,7 @@ ul.top_icon li a {
      display: inline-block;
      vertical-align: middle;
 }
-.main-menu ul>li:nth-child (6) {
+.main-menu ul>li:nth-child(6) {
      padding-right: 0px;
 }
 .nav>li {
@@ -1186,7 +1186,7 @@ ul.top_icon li a {
      right: 0;
      padding: 15px 0px;
 }
-.sub-full {}
+/* .sub-full {} */
 .simple-down {
      padding: 15px;
 }
@@ -2054,8 +2054,8 @@ right: 0px;
 bottom: -61px;;
 z-index: 9999;
 }
-.testomonial_img i img { border: #4bc714 solid 13px; width: 100%;}
-transform: skew(190deg);
+.testomonial_img i img { border: #4bc714 solid 13px; width: 100%;
+transform: skew(190deg);}
 
 .testimonial_cont h3 { color: #000; font-family: poppins;}
 
