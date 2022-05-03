@@ -38,7 +38,57 @@
             margin: 0;
             padding: 0;
         }
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: 'Lato', sans-serif;
+        }
+
+        .progress {
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            cursor: pointer;
+            top: 78%;
+            left: 50%;
+            margin: -80px 0 0 -80px;
+            background: #052501;
+        }
+
+        .progress-circle {
+        transform: rotate(-90deg);
+            margin-top: -40px;
+        }
+
+        .progress-circle-back {
+            fill: none;
+            stroke: #fff;
+            stroke-width:10px;
+        }
+
+        .progress-circle-prog {
+            fill: none;
+            stroke: #1c9824;
+            stroke-width: 10px;
+            stroke-dasharray: 0 999;
+            stroke-dashoffset: 0px;
+            transition: stroke-dasharray 0.7s linear 0s;
+        }
+
+        .progress-text {
+            width: 100%;
+            position: absolute;
+            top: 60px;
+            left: -16px;
+            text-align: center;
+            font-size: 2em;
+        }
+
+        .hide_button_div{
+            margin-top: 200px;
+        }
     </style>
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
 </head>
 <!-- body -->
 
@@ -448,15 +498,16 @@
         </div>
     </div>
     <div class="offer-bg">
-        <div class="container mb-5">
+        <div class="container">
             <div class="row">
                 <div class="col-xl-2 col-lg-2 col-md-2"></div>
                 <div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-5">
                     <h3 class="text-success mb-3 text-center">আপনার এলাকার ফসল ফলনের পূর্বাভাস জানতে অনুগ্রহ করে ফর্ম থেকে তথ্য নির্বাচন করুন এবং অনুসন্ধান বোতাম টিপুন</h3>
-                    <form>
+                    <form method="post">
+                        {% csrf_token %}
                         <div class="form-group">
                             <label for="district" style="color: #fff!important;">জেলা নির্বাচন করুন</label>
-                            <select class="form-control">
+                            <select class="form-control" id='district' name="district">
                                 <option value="Bagerhat">বাগেরহাট</option>
                                 <option value="Bandarban">বান্দরবান</option>
                                 <option value="Barguna">বরগুনা</option>
@@ -483,8 +534,7 @@
                                 <option value="Jhalokati">ঝালকাঠি</option>
                                 <option value="Jhenaidah">ঝিনাইদহ</option>
                                 <option value="Khagrachari">খাগড়াছড়ি</option>
-                                <option value="Khulna">খুলনা
-                                </option>
+                                <option value="Khulna">খুলনা</option>
                                 <option value="Kishoreganj">কিশোরগঞ্জ</option>
                                 <option value="Kurigram">কুড়িগ্রাম</option>
                                 <option value="Kushtia">কুষ্টিয়া</option>
@@ -525,21 +575,37 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <label for="dropdownYear" style="color: #fff!important;">বছর নির্বাচন করুন</label>
-                            <select name="year" class="form-control" id="dropdownYear" onchange="getProjectReportFunc()"></select>
+                            <label for="year" style="color: #fff!important;">বছর নির্বাচন করুন</label>
+                            <select name="year" class="form-control" id="year" onchange="getProjectReportFunc()"></select>
                         </div>
                         <div class="form-group">
-                            <label for="district" style="color: #fff!important;">মৌসম নির্বাচন করুন</label>
-                            <select class="form-control">
+                            <label for="season" style="color: #fff!important;">মৌসম নির্বাচন করুন</label>
+                            <select class="form-control" id="season" name="season">
                                 <option value="whole year">সারা বছর</option>
                                 <option value="kharif">খারিফ</option>
                                 <option value="rabi">রবি</option>
                             </select>
                         </div>
-                        <div style="text-align: center!important;">
-                            <button type="submit" class="btn btn-success">অনুসন্ধান করুন</button>
+                        <div class="mb-3" style="text-align: center!important;">
+                            <button type="submit" class="btn btn-success" id="search_button">অনুসন্ধান করুন</button>
                         </div>
                     </form>
+                    <div id="prediction_area">
+                        <h3 style="color: #fff;">ফসল ফলনের পূর্বাভাস হল : <span id="prediction_percent"></span> %</h3>
+                        <h3 style="color: #fff;">আপনার জন্য প্রস্তাবিত ফসল : <span id="suggested_crop"></span></h3>
+                        <div class="progress">
+                            <svg class="progress-circle" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">
+                                <circle class="progress-circle-back"
+                                        cx="80" cy="80" r="74"></circle>
+                                <circle class="progress-circle-prog"
+                                        cx="80" cy="80" r="74"></circle>
+                            </svg>
+                            <div class="progress-text" data-progress="0">0%</div>
+                        </div>
+                        <div class="hide_button_div text-center">
+                            <button type="submit" id="hide_button" class="btn btn-success">লুকান</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -637,7 +703,7 @@
                 $(this).removeClass('transition');
             });
 
-            $('#dropdownYear').each(function() {
+            $('#year').each(function() {
                 var year = (new Date()).getFullYear();
                 var current = year;
                 year -= 3;
@@ -648,6 +714,60 @@
                     $(this).append('<option value="' + (year + i) + '">' + (year + i) + '</option>');
                 }
             })
+            // Start prediction serach
+            $('#prediction_area').hide()
+            $('#search_button').on( 'click', function () {
+                event.preventDefault()
+                console.log('btn clicked')
+                var district = $("#district").val();
+                var year = $("#year").val();
+                var season = $('#season').val();
+                console.log(season + '' + year + '' + district)
+
+                jQuery.ajax({
+                    url: '/getPrediction/',
+                    data: {
+                        'district': district,
+                        'year' : year,
+                        'season' : season
+                    },
+                    type : "GET",
+                    dataType : "json",
+                    success:function(data)
+                    {
+                        console.log(data)
+                        $('#prediction_area').show()
+                        $('#prediction_percent').text(data.prediction)
+                        $('#suggested_crop').text(data.suggestion)
+                        // Progress bar start
+                        progressVal = data.prediction
+                        totalPercentageVal = 100
+                        var strokeVal = (4.64 * 100) /  totalPercentageVal;
+                        var x = document.querySelector('.progress-circle-prog');
+                        x.style.strokeDasharray = progressVal * (strokeVal) + ' 999';
+                        var el = document.querySelector('.progress-text');
+                        var from = $('.progress-text').data('progress');
+                        $('.progress-text').data('progress', progressVal);
+                        var start = new Date().getTime();
+
+                        setTimeout(function() {
+                            var now = (new Date().getTime()) - start;
+                            var progress = now / 700;
+                            el.innerHTML = progressVal / totalPercentageVal * 100 + '%';
+                            if (progress < 1) setTimeout(arguments.callee, 10);
+                        }, 10);
+                        // Progress bar end
+                    }
+                });
+            });
+            // End prediction serach
+            $('#hide_button').on( 'click', function () {
+                event.preventDefault()
+                console.log('hide btn clicked')
+                $('#prediction_area').hide()
+            });
+            // End of Hide
+
         });
     </script>
 </html>
