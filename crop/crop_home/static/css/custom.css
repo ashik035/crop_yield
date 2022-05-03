@@ -1,0 +1,55 @@
+.nice-select{
+    visibility: hidden;
+    width: 0;
+    margin: 0;
+    padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Lato', sans-serif;
+}
+
+.progress {
+    position: absolute;
+    height: 200px;
+    width: 200px;
+    cursor: pointer;
+    top: 78%;
+    left: 50%;
+    margin: -80px 0 0 -80px;
+    background: #052501;
+}
+
+.progress-circle {
+transform: rotate(-90deg);
+    margin-top: -40px;
+}
+
+.progress-circle-back {
+    fill: none;
+    stroke: #fff;
+    stroke-width:10px;
+}
+
+.progress-circle-prog {
+    fill: none;
+    stroke: #1c9824;
+    stroke-width: 10px;
+    stroke-dasharray: 0 999;
+    stroke-dashoffset: 0px;
+    transition: stroke-dasharray 0.7s linear 0s;
+}
+
+.progress-text {
+    width: 100%;
+    position: absolute;
+    top: 60px;
+    left: -16px;
+    text-align: center;
+    font-size: 2em;
+}
+
+.hide_button_div{
+    margin-top: 200px;
+}
