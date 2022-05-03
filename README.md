@@ -22,6 +22,10 @@ python manage.py runserver
 
 
 
-For new migrations files-
+# For new migrations files-
 
 python manage.py makemigrations crop_home
+
+# To create superuser for Admin pannel-
+
+python manage.py createsuperuser
