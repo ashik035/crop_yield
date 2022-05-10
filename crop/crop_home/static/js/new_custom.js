@@ -20,8 +20,11 @@ $(document).ready(function() {
     })
     // Start prediction serach
     $('#prediction_area').hide()
+    $('#searching_div').hide()
     $('#search_button').on( 'click', function () {
         event.preventDefault()
+        $('#prediction_area').hide()
+        $('#searching_div').show()
         console.log('btn clicked')
         var district = $("#district").val();
         var year = $("#year").val();
@@ -40,6 +43,7 @@ $(document).ready(function() {
             success:function(data)
             {
                 console.log(data)
+                $('#searching_div').hide()
                 $('#prediction_area').delay(5000).show()
                 $('#prediction_percent').text(data.prediction)
                 $('#suggested_crop').text(data.suggestion)
@@ -53,6 +57,13 @@ $(document).ready(function() {
                 var from = $('.progress-text').data('progress');
                 $('.progress-text').data('progress', progressVal);
                 var start = new Date().getTime();
+                $('#n_text').text(data.N + '%')
+                $('#p_text').text(data.P + '%')
+                $('#k_text').text(data.K + '%')
+                $('#n_div').attr("style", "width:"+ data.N + "%");
+                $('#p_div').attr("style", "width:"+ data.P + "%");
+                $('#k_div').attr("style", "width:"+ data.K + "%");
+
 
                 setTimeout(function() {
                     var now = (new Date().getTime()) - start;
@@ -61,6 +72,9 @@ $(document).ready(function() {
                     if (progress < 1) setTimeout(arguments.callee, 10);
                 }, 10);
                 // Progress bar end
+            }, error: function(XMLHttpRequest, textStatus, errorThrown) {
+                $('#searching_div').hide()
+                alert("Status 404: No data found for the given input");
             }
         });
     });

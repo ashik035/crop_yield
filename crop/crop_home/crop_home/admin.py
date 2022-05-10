@@ -17,7 +17,6 @@ from django.shortcuts import render
 from .models import Production
 from .models import Recomendation
 from django import forms
-from .models import Production
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
