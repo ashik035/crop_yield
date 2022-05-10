@@ -525,19 +525,26 @@
                         <div class="form-group">
                             <label for="season" style="color: #fff!important;">মৌসম নির্বাচন করুন</label>
                             <select class="form-control" id="season" name="season">
-                                <option value="whole year">সারা বছর</option>
-                                <option value="kharif">খারিফ</option>
-                                <option value="rabi">রবি</option>
+                                <option value="Whole Year">সারা বছর</option>
+                                <option value="Kharif">খারিফ</option>
+                                <option value="Rabi">রবি</option>
+                                <option value="Winter">শীতকালীন</option>
+                                <option value="Autumn">শরৎকালীন</option>
+                                <option value="Summer">গ্রীষ্মকালীন</option>
+                                <option value="Spring">বসন্তকালীন</option>
                             </select>
                         </div>
                         <div class="mb-3" style="text-align: center!important;">
                             <button type="submit" class="btn btn-success" id="search_button">অনুসন্ধান করুন</button>
                         </div>
                     </form>
+                    <div id="searching_div">
+                        <img style="margin: 5% 0 0 37%;" src='{% static "images/searching.gif" %}' alt="#" />
+                    </div>
                     <div id="prediction_area">
-                        <h3 style="color: #fff;">ফসল ফলনের পূর্বাভাস হল : <span id="prediction_percent"></span> %</h3>
                         <h3 style="color: #fff;">আপনার জন্য প্রস্তাবিত ফসল : <span id="suggested_crop"></span></h3>
-                        <div class="progress">
+                        <h3 style="color: #fff;">ফসল ফলনের পূর্বাভাস হল : <span id="prediction_percent"></span> %</h3>
+                        <div class="progress circle-progress-main">
                             <svg class="progress-circle" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">
                                 <circle class="progress-circle-back"
                                         cx="80" cy="80" r="74"></circle>
@@ -545,6 +552,24 @@
                                         cx="80" cy="80" r="74"></circle>
                             </svg>
                             <div class="progress-text" data-progress="0">0%</div>
+                        </div>
+                        <div class="npk_div">
+                            <h4 style="color: #1c9824;">নীচের তালিকা অনুযায়ী প্রস্তাবিত ফসলের জন্য সর্বাধিক পরিমাণ ফলন পেতে আপনাকে এভাবে নাইট্রোজেন ফসফরাস এবং পটাসিয়াম সেট করতে হবে - </h4>
+                            <br>
+                            <h4 style="color: #ffffff;">নাইট্রোজেন : </h4>
+                            <div class="progress">
+                                <div class="progress-bar" id="n_div" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="n_text"></span></div>
+                            </div>
+                            <br>
+                            <h4 style="color: #ffffff;">ফসফরাস : </h4>
+                            <div class="progress">
+                                <div class="progress-bar" id="p_div" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="p_text"></span></div>
+                            </div>
+                            <br>
+                            <h4 style="color: #ffffff;">পটাসিয়াম : </h4>
+                            <div class="progress">
+                                <div class="progress-bar" id="k_div" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="k_text"></span></div>
+                            </div>
                         </div>
                         <div class="hide_button_div text-center">
                             <button type="submit" id="hide_button" class="btn btn-success">লুকান</button>
