@@ -542,16 +542,18 @@
                         <img style="margin: 5% 0 0 37%;" src='{% static "images/searching.gif" %}' alt="#" />
                     </div>
                     <div id="prediction_area">
-                        <h3 style="color: #fff;">আপনার জন্য প্রস্তাবিত ফসল : <span id="suggested_crop"></span></h3>
-                        <h3 style="color: #fff;">ফসল ফলনের পূর্বাভাস হল : <span id="prediction_percent"></span> %</h3>
-                        <div class="progress circle-progress-main">
-                            <svg class="progress-circle" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">
-                                <circle class="progress-circle-back"
-                                        cx="80" cy="80" r="74"></circle>
-                                <circle class="progress-circle-prog"
-                                        cx="80" cy="80" r="74"></circle>
-                            </svg>
+                        <div class="circle_img">
+                            <h3 style="color: #fff;">আপনার জন্য প্রস্তাবিত ফসল : <span id="suggested_crop"></span></h3>
+                            <h3 style="color: #fff;">ফসল ফলনের পূর্বাভাস হল : <span id="prediction_percent"></span> %</h3>
+                            <div class="progress circle-progress-main">
+                                <svg class="progress-circle" width="200px" height="200px" xmlns="http://www.w3.org/2000/svg">
+                                    <circle class="progress-circle-back"
+                                            cx="80" cy="80" r="74"></circle>
+                                    <circle class="progress-circle-prog"
+                                            cx="80" cy="80" r="74"></circle>
+                                </svg>
                             <div class="progress-text" data-progress="0">0%</div>
+                        </div>
                         </div>
                         <div class="npk_div">
                             <h4 style="color: #1c9824;">নীচের তালিকা অনুযায়ী প্রস্তাবিত ফসলের জন্য সর্বাধিক পরিমাণ ফলন পেতে আপনাকে এভাবে নাইট্রোজেন ফসফরাস এবং পটাসিয়াম সেট করতে হবে - </h4>
@@ -571,8 +573,30 @@
                                 <div class="progress-bar" id="k_div" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"><span id="k_text"></span></div>
                             </div>
                         </div>
+                        <div id="img_show" class="pt-5 text-center">
+                            <h3 class="predict_title">This Image is for : Correlation matrix</h3>
+                            <img class="predict_img" src='{% static "images/predict/linear_reg.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Correlation matrix of DT and RF</h3>
+                            <img class="predict_img" src='{% static "images/predict/ml_regression.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Accuracy of the RF and DT</h3>
+                            <img class="predict_img" src='{% static "images/predict/ml_regression_4.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Correlation matrix of DT and RF and KNN for prediction</h3>
+                            <img class="predict_img" src='{% static "images/recomend/accuracy.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Correlation matrix for recomendation dataset</h3>
+                            <img class="predict_img" src='{% static "images/recomend/correlation.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Crop Yield by Humidity</h3>
+                            <img class="predict_img" src='{% static "images/recomend/humidity.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Crop Yield by PH</h3>
+                            <img class="predict_img" src='{% static "images/recomend/ph.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Crop Yield by Rainfall</h3>
+                            <img class="predict_img" src='{% static "images/recomend/rainfall.png" %}' alt="#" />
+                            <h3 class="predict_title">This Image is for : Crop Yield by Temperature</h3>
+                            <img class="predict_img" src='{% static "images/recomend/temperature.png" %}' alt="#" />
+                        </div>
                         <div class="hide_button_div text-center">
                             <button type="submit" id="hide_button" class="btn btn-success">লুকান</button>
+                            <button  type="submit" id="expand_button" class="btn btn-success">আরো দেখুন</button>
+                            <button  type="submit" id="reduce_button" class="btn btn-success">কম দেখুন</button>
                         </div>
                     </div>
                 </div>

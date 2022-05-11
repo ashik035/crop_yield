@@ -33,21 +33,11 @@ from sklearn.neighbors import KNeighborsClassifier
 import random
 
 def home(request):
-        #    call='this page is now dynamic'
-        #    response='Thanks for reading this tutorial!'
-        #    context={'call':call, 'response':response}
-        #    return render(request, 'home.html', context)
     return render(request, 'home.html')
 
 def get_prediction(request):
     crop_data= pd.read_csv(os.path.join(os.path.dirname(__file__), "crop_production.csv"))
     print(crop_data)
-    # crop_data = Production.objects.all()
-    # crop_data = pd.DataFrame(crop_data)
-    # crop_data = pd.DataFrame(list(Production.objects.all().values()))
-    # crop_data = crop_data.tail(crop_data.shape[0] -1)
-    # crop_data['Production'] = crop_data['Production'].str.replace('\r', '', regex=True)
-    # os.remove(file) for file in os.listdir('static/images/predict') if file.endswith('.png')
 
     # start from here
     files = glob.glob('static/images/predict/*.png')
@@ -55,35 +45,18 @@ def get_prediction(request):
         os.remove(i)
 
     print(crop_data.columns)
-
     crop_data.describe()
-
     crop_data.isnull().sum()
     print(crop_data)
-
     crop_data = crop_data.dropna()
     print(crop_data)
-
     crop_data.isnull().values.any()
-
     crop_data.Division_Name.unique()
-
-    # crop_data['Production'].astype(float)
-    # crop_data['Area'].astype(float)
-    # crop_data['Production'] = pd.to_numeric(crop_data['Production'],errors='coerce')
-    # crop_data['Area'] = pd.to_numeric(crop_data['Area'],errors='coerce')
 
     crop_data['Yield'] = (crop_data['Production'] / crop_data['Area'])
     crop_data['Season'] = crop_data['Season'].str.strip()
-    # max_yeild = crop_data['A'].idxmax()
-
-    # crop_data = crop_data.loc[crop_data['District_Name'] == request.GET['district']]
-    print(request.GET['district'])
-    print(request.GET['season'])
 
     max_yeild = crop_data.loc[(crop_data['District_Name'] == request.GET['district']) & (crop_data['Season'] == request.GET['season'])]
-    # max_yeild = crop_data.loc[crop_data['District_Name'] == request.GET['district'] and crop_data['Season'] == request.GET['season']]
-    # max_yeild.reset_index(drop=True)
     if max_yeild.empty:
         if request.GET['season'] == 'Whole Year':
             max_yeild = 'Paddy'
@@ -108,15 +81,8 @@ def get_prediction(request):
         max_yeild = max_yeild['Crop']
     print(f'Max Yield: {max_yeild}')
 
-
     crop_data.head(10)
-
-    # ax = sns.pairplot(crop_data)
-    # # print(ax)
-
     data = crop_data.drop(['Division_Name'], axis = 1)
-
-
     data.corr()
 
     sns.heatmap(data.corr(), annot =True)
@@ -124,8 +90,6 @@ def get_prediction(request):
 
     dummy = pd.get_dummies(data)
     print(dummy)
-
-
     x = dummy.drop(["Production","Yield"], axis=1)
     y = dummy["Production"]
 
@@ -138,26 +102,17 @@ def get_prediction(request):
     print("y_train :",y_train.shape)
     print("y_test :",y_test.shape)
 
-    # x_train.replace(np.nan, 0)
-    # y_train.replace(np.nan, 0)
     x_train = x_train.dropna()
     y_train = y_train.dropna()
     print(f'x_train : {x_train}')
     print(f'y_train : {y_train}')
-    # print(f'y_train cols: {y_train.columns}')
     print(f'y_train : {type(y_train)}')
 
     model = LinearRegression()
     model.fit(x_train,y_train)
-
-
-
     lr_predict = model.predict(x_test)
     print(lr_predict)
-
-
     model.score(x_test,y_test)
-
     r = r2_score(y_test,lr_predict)
     print("R2 score : ",r)
 
@@ -165,10 +120,7 @@ def get_prediction(request):
     plt.xlabel('Actual')
     plt.ylabel('Predicted')
     plt.title('Linear Regression')
-    # plt.savefig("D:\xampp\htdocs\crop\crop_yield\crop\crop_home\static\images\predict\my_plot.png")
-    # plt.savefig("squares.png")
     plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/linear_reg.png'))
-    # plt.show()
 
     time.sleep(2)
     model = RandomForestRegressor(n_estimators = 11)
@@ -177,7 +129,6 @@ def get_prediction(request):
     print(rf_predict)
 
     model.score(x_test,y_test)
-
     r1 = r2_score(y_test,rf_predict)
     print("R2 score : ",r1)
 
@@ -195,17 +146,6 @@ def get_prediction(request):
 
     print(x_train)
     print(x_test)
-
-    # regressor = SVR(kernel = 'rbf')
-    # regressor.fit(x_train,y_train)
-
-    # svr_predict = regressor.predict(x_test)
-    # print(svr_predict)
-
-    # ax = sns.distplot(y_test, hist = False, color = "r", label = "Actual value ")
-    # sns.distplot(svr_predict, hist = False, color = "b", label = "Predicted Values", ax = ax)
-    # plt.title('Support Vector Regression')
-
 
     regressor = DecisionTreeRegressor(random_state = 5)
     regressor.fit(x_train,y_train)
@@ -229,10 +169,7 @@ def get_prediction(request):
     sns.distplot(decisiontree_predict, hist = False, color = "b", label = "Predicted Values", ax = ax)
     plt.title('Decision Tree Regression')
 
-
     accuracies = cross_val_score(estimator = model, X = x_train, y=y_train, cv = 10)
-
-
     a1 = (accuracies.mean()*100)
     b1 = (accuracies.std()*100)
 
@@ -241,7 +178,6 @@ def get_prediction(request):
 
     print(f"Accuracy of random forest: {acc1} %")
     print(f"Standard Deviation  of random forest: {std1} %")
-
 
     accuracies = cross_val_score(estimator = regressor, X = x_train, y=y_train)
 
@@ -260,99 +196,14 @@ def get_prediction(request):
     x_pos = np.arange(len(Accuracy))
     plt.bar(x_pos, Accuracy, color=['#488AC7','#ff8c00'])
 
-
     plt.xticks(x_pos, Algorithms)
     plt.ylabel('Accuracy(in %)')
     plt.xlabel('Machine Learning Regression Techniques')
-
-    # # Show graph
-    # plt.show()
     plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/ml_regression.png'))
-
-
-    # Algorithms = ['Random Forest', 'Decision-tree']
-    # Accuracy = [b1, b2]
-
-    # x_pos = np.arange(len(Accuracy))
-
-    # plt.bar(x_pos, Accuracy, color=['#488AC7','#ff8c00'])
-
-    # plt.xticks(x_pos, Algorithms)
-    # plt.ylabel('Standard Deviation(in %)')
-    # plt.xlabel('Machine Learning Regression Techniques')
-
-    # # Show graph
-    # # plt.show()
-    # plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/ml_regression_2.png'))
-    # # plt.savefig('SD.png')
-
-
-    # Algorithms = ['Random Forest', 'Decision-tree']
-    # Accuracy = [Adjr2_1, Adjr2_2]
-
-    # x_pos = np.arange(len(Accuracy))
-
-    # plt.bar(x_pos, Accuracy, color=['#488AC7','#ff8c00'])
-
-    # plt.xticks(x_pos, Algorithms)
-    # plt.ylabel('Standard Deviation(in %)')
-    # plt.xlabel('Machine Learning Regression Techniques')
-
-    # # plt.show()
-    # # plt.savefig('SD.png')
-    # plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/ml_regression_3.png'))
-
-
-
-
-    # Algorithms = ['Random Forest', 'Decision-tree']
-    # Accuracy = [r1, r2]
-
-    # x_pos = np.arange(len(Accuracy))
-
-    # # Create bars with different colors
-    # plt.bar(x_pos, Accuracy, color=['#488AC7','#ff8c00'])
-
-    # # Create names on the x-axis
-    # plt.xticks(x_pos, Algorithms)
-    # plt.ylabel('R-Squared Score')
-    # plt.xlabel('Machine Learning Regression Techniques')
-
-    # # Show graph
-    # # plt.show()
-    # # plt.savefig('SD.png')
-
-    # plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/ml_regression_4.png'))
-
-
-
-
-    # # create a dataset
-    # Algorithms = ['Random Forest', 'Decision-tree']
-    # Accuracy = [Adjr2_1, Adjr2_2]
-
-    # x_pos = np.arange(len(Accuracy))
-
-    # # Create bars with different colors
-    # plt.bar(x_pos, Accuracy, color=['#488AC7','#ff8c00'])
-
-    # # Create names on the x-axis
-    # plt.xticks(x_pos, Algorithms)
-    # plt.ylabel('Adjusted R-Squared Score')
-    # plt.xlabel('Machine Learning Regression Techniques')
-
-    # # Show graph
-    # # plt.show()
-    # # plt.savefig('SD.png')
-    # plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/ml_regression_4.png'))
-
-
 
     print('Mean Absolute Error:', metrics.mean_absolute_error(rf_predict,y_test))
     print('Mean Squared Error:', metrics.mean_squared_error(y_test, rf_predict))
     print('Root Mean Squared Error:', np.sqrt(metrics.mean_squared_error(y_test, rf_predict)))
-
-
 
     # set width of bar
     barWidth = 0.25
@@ -380,8 +231,6 @@ def get_prediction(request):
     plt.xticks([r + barWidth for r in range(len(Accuracy))],
             Algorithms)
 
-    # plt.legend()
-    # plt.show()
     plt.savefig(os.path.join(settings.BASE_DIR, 'static/images/predict/ml_regression_4.png'))
     npk = getNPK(request.GET, max_yeild)
     data = {
@@ -393,20 +242,6 @@ def get_prediction(request):
         'P' : str(npk[1]),
         'K' : str(npk[2]),
     }
-    # End here
-    # max_yeild = 'Boro'
-    # npk = getNPK(request.GET, max_yeild)
-
-    # print(f'npk : {npk}')
-    # data = {
-    #     'payload' : request.GET,
-    #     'status' : 'success',
-    #     'prediction' : '80',
-    #     'suggestion' : 'rice',
-    #     'N' : str(npk[0]),
-    #     'P' : str(npk[1]),
-    #     'K' : str(npk[2]),
-    # }
     return JsonResponse(data)
 
 def getNPK(data, max_yeild):
@@ -431,8 +266,6 @@ def getNPK(data, max_yeild):
         temp = 26
     print(f'temp : {temp}')
     res = []
-
-
     crop_rec_init = pd.read_csv(os.path.join(os.path.dirname(__file__), "Crop_recommendation.csv"))
 
     crop_rec_init.describe()

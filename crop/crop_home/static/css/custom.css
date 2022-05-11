@@ -9,13 +9,15 @@
     padding: 0;
     font-family: 'Lato', sans-serif;
 }
-
+.circle_img {
+    position: relative;
+}
 .circle-progress-main {
     position: absolute;
     height: 200px;
     width: 200px;
     cursor: pointer;
-    top: 50%;
+    bottom: -330%;
     left: 50%;
     margin: -80px 0 0 -80px;
     background: #052501;
@@ -51,7 +53,7 @@ transform: rotate(-90deg);
 }
 
 .hide_button_div{
-    margin-top: 200px;
+    margin-top: 60px;
 }
 
 .npk_div{
@@ -60,4 +62,13 @@ transform: rotate(-90deg);
 
 .npk_div .progress-bar{
     background-color: #1c9824;
+}
+
+#img_show .predict_title {
+    font-size: 20px;
+    color: #fff;
+    padding-top: 30px;
+}
+#img_show .predict_img {
+    height: 300px;
 }

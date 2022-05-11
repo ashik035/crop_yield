@@ -21,8 +21,12 @@ $(document).ready(function() {
     // Start prediction serach
     $('#prediction_area').hide()
     $('#searching_div').hide()
+    $('#img_show').hide()
+    $('#reduce_button').hide()
     $('#search_button').on( 'click', function () {
         event.preventDefault()
+        $('#img_show').hide()
+        $('#reduce_button').hide()
         $('#prediction_area').hide()
         $('#searching_div').show()
         console.log('btn clicked')
@@ -101,5 +105,16 @@ $(document).ready(function() {
         $('#prediction_area').hide()
     });
     // End of Hide
+    $('#expand_button').on( 'click', function () {
+        $('#img_show').show()
+        $('#expand_button').hide()
+        $('#reduce_button').show()
+    });
+
+    $('#reduce_button').on( 'click', function () {
+        $('#img_show').hide()
+        $('#reduce_button').hide()
+        $('#expand_button').show()
+    });
 
 });
